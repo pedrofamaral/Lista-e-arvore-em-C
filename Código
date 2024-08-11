@@ -1,0 +1,174 @@
+1-Crie uma estrutura em C para representar um nó de uma lista duplamente encadeada que contém um inteiro. Agora, implemente um outro Node, chamado NodeP, que contém como dado um struct de Pessoa, que por sua vez, contém nome e idade.
+typedef struct no{
+	struct no* prox;
+	struct no* ant;
+	int dado;
+}Node;
+
+typedef struct pes{
+	char nome[20];
+	int idade;
+}Pessoa;
+
+typedef struct nopes{
+	struct nopes* prox;
+	struct nopes* ant;
+	Pessoa* pessoa
+}NodeP
+
+typedef struct no{
+    struct NodeP *inicio;
+    struct NodeP *fim;
+    int tamanholista;
+    int i;
+} listaEncadeada;
+
+2-Escreva uma função para inserir um novo Node no início de uma lista duplamente encadeada.
+typedef struct no{
+	struct no* prox;
+	struct no* ant;
+	int dado;
+}Node;
+
+int insere(Lista * lst,char noem[20], int idade)
+{
+	NodeP* aux = (NodeP*) malloc(sizeof(NodeP));
+	if(aux == NULL)
+	return 0;
+	aux->pessoa=(Pessoa*)malloc(sizeof(Pessoa));
+	if(aux->pessoa == NULL){
+	free(aux);
+	return 0;
+	}
+strcpy(aux->pessoa->nome, nome);
+aux->pessoa->idade=idade;	
+}
+
+3-Implemente uma função para buscar um elemento em uma lista duplamente encadeada.
+
+int busca(int dado, NodeP *le){
+	NodeP *p;
+	p=le;
+	while(p!=NULL && p->conteudo.idade != dado)
+		p=p->prox;
+	return p;
+}
+
+4-Escreva uma função para remover um nó com um valor específico de uma lista duplamente encadeada.
+
+void remove(NodeP* head, int dado) {
+    if (head == NULL) {
+        printf("A lista está vazia.\n");
+        return;
+    }
+
+    NodeP* p = head;
+    while (p != NULL && p->conteudo.idade != dado) {
+        atual = atual->prox;
+    }
+
+    if (p == NULL) {
+        printf("O valor %d não foi encontrado na lista.\n", dado);
+        return;
+    }
+
+    if (p->prev != NULL) {
+        p->ant->prox = atual->prox;
+    }
+
+    if (p->next != NULL) {
+        p->prox->ant = atual->ant;
+    }
+
+    if (p == head) {
+        head = p->prox;
+    }
+
+    free(p);
+}
+
+5-Implemente uma função para inverter uma lista duplamente encadeada de forma iterativa.
+
+void inverter(Lista* lst, Lista* nova)
+{
+	NodeP* aux = lst->primeiro;
+	do{
+		inserir(nova, aux->pessoa);
+		aux=aux->prox;
+	}while(aux != lst->primeiro
+}
+
+6-Crie uma estrutura em C para representar um nó de uma árvore binária que contém um inteiro.
+
+typedef struct no{
+    int dado;  
+    struct no *esq, *dir; 
+}arvore;
+
+arvore* criarArvore(int dado){
+    arvore *aux = (arvore*)malloc(sizeof(arvore));
+    aux->dado = dado;
+    aux->esq = NULL;
+    aux->dir = NULL;
+    return aux;
+}
+
+7-Escreva uma função para inserir um novo nó em uma árvore binária.
+
+arvore* insere(arvore *p, int dado) {
+    if (p == NULL) 
+        return criarArvore(dado);
+    
+    if (dado < p->d) 
+        t->esq = insere(t->esq, dado);
+
+    else if (dado > p->d) 
+        p->dir = insere(p->dir, dado);
+    
+    return p;
+}
+
+8-Implemente uma função para percorrer uma árvore binária em ordem.
+
+void percorre(arvore *p) {
+	if(p == NULL)
+	return 0;
+
+   	else{
+        	percorre(p->esq);
+        	printf("%d ", p->d);
+        	percorre(p->dir);
+   	}
+}
+
+9-Escreva uma função para calcular a altura de uma árvore binária.
+
+int altura(arvore* p) {
+    if (p == NULL)
+        return 0;
+    else{
+        int hesq = altura(p->esq);
+        int hdir = altura(p->dir);
+    
+        if  (hesq > hdir)
+            return hesq + 1;
+        else
+            return hdir + 1;
+    }
+}
+
+10-Implemente uma função para contar o número de folhas em uma árvore binária.
+
+int contafolha(arvore *p){
+    if(p == NULL)
+        return 0;
+
+    if(p->esq == NULL && p->dir == NULL)
+        return 1;
+
+    int folhaesq = contafolha(p->esq);
+    int folhadir = contafolha(p->dir);
+
+    return folhaesq + folhadir;
+
+}
